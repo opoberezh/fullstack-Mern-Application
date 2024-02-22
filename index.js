@@ -8,6 +8,7 @@ import morgan from "morgan";
 import path from "node:path";
 import authRoutes from "./server/routes/api/auth.js";
 import userRoutes from "./server/routes/api/users.js";
+import postRoutes from "./server/routes/api/posts.js";
 import { fileURLToPath } from "url";
 
 
@@ -37,9 +38,14 @@ app.use("/assets", express.static(path.join(__dirname, 'public', 'assets')));
 // ROUTES
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
 
 // mongoose setup
 const PORT = process.env.PORT || 6001;
-mongoose.connect(process.env.MONGO_URL).then(() => {
-  app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
-}).catch((error) => console.log(`${error} did not connect`));
+mongoose.connect(process.env.MONGO_URL).then(() =>
+app.listen(PORT, () => {
+  console.log("Database connection successful");
+  console.log(`Server Port: ${PORT}`);
+})
+).catch((error) => console.log(`${error} did not connect`));
+

@@ -1,15 +1,13 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-import { HttpError } from "../helpers/HttpError.js";
-import { ctrlWrapper } from "../helpers/ctrlWrapper.js";
+
 
 
 
 /* REGISTER USER */
-  const register = ctrlWrapper(async (req, res) => {
-  console.log("Request body:", req.body);
-
+export const register = async (req, res) => {
+  try {
     const {
       firstName,
       lastName,
@@ -21,10 +19,6 @@ import { ctrlWrapper } from "../helpers/ctrlWrapper.js";
       occupation,
     } = req.body;
 
-    if (!email || !password || email.trim() === '' || password.trim() === '') {
-      throw HttpError(400);
-    }
-    
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
@@ -40,28 +34,28 @@ import { ctrlWrapper } from "../helpers/ctrlWrapper.js";
       viewedProfile: Math.floor(Math.random() * 10000),
       impressions: Math.floor(Math.random() * 10000),
     });
-
     const savedUser = await newUser.save();
-
     res.status(201).json(savedUser);
- });
-
-//  LOGGING IN
- const login = ctrlWrapper(async(req, res) => {
-  const {email, password} = req.body;
-  const user = await User.findOne({email: email});
-  if (!user){
-    throw HttpError(400, "User does not exist");
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
+};
 
-  const isMatch = await bcrypt.compare(password, user.password);
-if(!isMatch) {
-  throw HttpError(400, "Invalid credentials");
-}
-const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, { expiresIn: "23h" });
-delete user.password;
-res.status(200).json({token, user});
-})
+/* LOGGING IN */
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email });
+    if (!user) return res.status(400).json({ msg: "User does not exist. " });
 
-export {register, login};
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials. " });
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    delete user.password;
+    res.status(200).json({ token, user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
  
