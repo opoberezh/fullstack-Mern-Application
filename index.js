@@ -10,7 +10,9 @@ import authRoutes from "./server/routes/api/auth.js";
 import userRoutes from "./server/routes/api/users.js";
 import postRoutes from "./server/routes/api/posts.js";
 import { fileURLToPath } from "url";
-
+import User from "./server/models/User.js";
+import Post from "./server/models/Post.js";
+import { users, posts } from "./server/data/index.js";
 
 
 dotenv.config();
@@ -46,6 +48,10 @@ mongoose.connect(process.env.MONGO_URL).then(() =>
 app.listen(PORT, () => {
   console.log("Database connection successful");
   console.log(`Server Port: ${PORT}`);
+
+  // // ADD DATA ONE TIME
+  // User.insertMany(users);
+  // Post.insertMany(posts);
 })
 ).catch((error) => console.log(`${error} did not connect`));
 
