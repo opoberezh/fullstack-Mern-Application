@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="fullstack-Mern-Application">
+        <BrowserRouter basename="fullstack-Mern-Application/client">
           <App />
         </BrowserRouter>
       </PersistGate>
