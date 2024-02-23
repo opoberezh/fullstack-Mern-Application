@@ -6,13 +6,13 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "node:path";
-import authRoutes from "./server/routes/api/auth.js";
-import userRoutes from "./server/routes/api/users.js";
-import postRoutes from "./server/routes/api/posts.js";
+import authRoutes from "./routes/api/auth.js";
+import userRoutes from "./routes/api/users.js";
+import postRoutes from "./routes/api/posts.js";
 import { fileURLToPath } from "url";
-import User from "./server/models/User.js";
-import Post from "./server/models/Post.js";
-import { users, posts } from "./server/data/index.js";
+import User from "./models/User.js";
+import Post from "./models/Post.js";
+import { users, posts } from "./data/index.js";
 
 
 dotenv.config();
