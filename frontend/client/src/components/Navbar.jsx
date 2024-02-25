@@ -61,7 +61,7 @@ const Navbar = () => {
             },
           }}
         >
-          SocialNet
+          SocialNETia
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
