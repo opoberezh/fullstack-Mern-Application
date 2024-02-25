@@ -1,21 +1,26 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePge";
 import ProfilePage from "./pages/ProfilePage";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
 import CssBaseLine from "@mui/material/CssBaseline";
-import {createTheme,  ThemeProvider} from "@mui/material/styles";
+import {  ThemeProvider, createTheme } from "@mui/material/styles";
+import { useSelector } from "react-redux";
+import { useMemo } from "react";
 import { themeSettings } from "./theme";
+import { selectTheme } from "./redux/selectors";
+
 
 function App() {
-  const mode = useSelector((state) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const mode = useSelector(selectTheme);
+  console.log("Current mode:", mode);
 
+  const theme = useMemo(() =>
+  createTheme(themeSettings(mode)), [mode]);
+
+  console.log("Theme settings for current mode:", theme);
   return (
     <div className="app">
-      <BrowserRouter>
-      <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
         <CssBaseLine/>
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
@@ -23,7 +28,7 @@ function App() {
         <Route path="/profile/:userId" element={<ProfilePage/>}/>
       </Routes>
       </ThemeProvider>
-      </BrowserRouter>
+
     </div>
   );
 }
