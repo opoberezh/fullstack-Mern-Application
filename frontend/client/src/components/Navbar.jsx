@@ -25,14 +25,14 @@ import { setMode} from "../redux/themeSlice";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
 import { setLogout } from "../redux/slice";
-import { selectTheme } from "../redux/selectors";
+import { selectTheme, selectUser } from "../redux/selectors";
 
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const user = useSelector(selectUser);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mode = useSelector(selectTheme);
   console.log("Mode from Redux:", mode);
@@ -61,7 +61,7 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          SocialNet
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
