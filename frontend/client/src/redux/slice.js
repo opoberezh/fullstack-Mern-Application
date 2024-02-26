@@ -5,12 +5,17 @@ const initialState = {
   user: {
     firstName: null,
     lastName: null,
+    email: null,
+    password: '',
+    location: '',
+    occupation: '',
+    picture: '',
   },
   token: null,
   posts: [],
 };
 
- export const authSlice = createSlice({
+  const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
