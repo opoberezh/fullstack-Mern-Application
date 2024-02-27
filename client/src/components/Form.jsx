@@ -10,12 +10,13 @@ import {
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Formik } from 'formik';
 import { registerSchema, loginSchema } from './YupSchema';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useNavigate } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
 import { setLogin } from '../redux/slice';
 import Dropzone from 'react-dropzone';
 import FlexBetween from './FlexBetween';
-import axios from "axios";
+
+
 const initialValuesRegister = {
   firstName: '',
   lastName: '',
@@ -23,7 +24,7 @@ const initialValuesRegister = {
   password: '',
   location: '',
   occupation: '',
-  picture: '',
+  picture: null,
 };
 
 const initialValuesLogin = {
@@ -39,8 +40,7 @@ const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
-  const token = useSelector(state => state.auth.token);
-  
+
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
     const formData = new FormData();
@@ -49,25 +49,18 @@ const Form = () => {
     }
     formData.append("picturePath", values.picture.name);
 
-    try {
-      const savedUserResponse = await axios.post(
-        'http://localhost:3001/auth/register',
-        formData,
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'content-type': 'multipart/form-data',
-          },
-        }
-      );
-      const savedUser = savedUserResponse.data;
-      onSubmitProps.resetForm();
-
-      if (savedUser) {
-        setPageType('login');
+    const savedUserResponse = await fetch(
+      "http://localhost:3001/auth/register",
+      {
+        method: "POST",
+        body: formData,
       }
-    } catch (error) {
-      console.error('Error registering user:', error);
+    );
+    const savedUser = await savedUserResponse.json();
+    onSubmitProps.resetForm();
+
+    if (savedUser) {
+      setPageType("login");
     }
   };
 

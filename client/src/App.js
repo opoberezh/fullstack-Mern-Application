@@ -16,8 +16,7 @@ function App() {
 
   const theme = useMemo(() =>
   createTheme(themeSettings(mode)), [mode]);
-
-  console.log("Theme settings for current mode:", theme);
+const isAuth = 
   return (
     <div className="app">
         <ThemeProvider theme={theme}>

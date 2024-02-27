@@ -1,18 +1,15 @@
-
 import User from "../models/User.js";
 
-// READ
+/* READ */
 export const getUser = async (req, res) => {
   try {
-    const {id} = req.params;
-  const user = await User.findById(id); 
-  res.status(200).json(user);
-  } catch (error) {
-    throw HttpError(404);
-  }  
+    const { id } = req.params;
+    const user = await User.findById(id);
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
 };
- 
-
 
 export const getUserFriends = async (req, res) => {
   try {
@@ -33,8 +30,7 @@ export const getUserFriends = async (req, res) => {
   }
 };
 
-
-// UPDATE
+/* UPDATE */
 export const addRemoveFriend = async (req, res) => {
   try {
     const { id, friendId } = req.params;
