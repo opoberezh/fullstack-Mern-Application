@@ -21,4 +21,3 @@ export const themeSlice = createSlice({
 export const { setMode } = themeSlice.actions;
 export const themeReducer = themeSlice.reducer;
 
-console.log("Current mode:", initialState.mode);

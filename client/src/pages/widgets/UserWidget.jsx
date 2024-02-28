@@ -13,7 +13,8 @@ import {
   ManageAccountsOutlined,
   WorkOutlineOutlined,
 } from '@mui/icons-material';
-
+import { Twitter } from '@mui/icons-material';
+import { LinkedIn } from '@mui/icons-material';
 const UserWidget = ({ userId, picturePath }) => {
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
@@ -26,11 +27,12 @@ const UserWidget = ({ userId, picturePath }) => {
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
       method: 'GET',
-      headers: { Autherization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
     setUser(data);
   };
+
   useEffect(() => {
     getUser();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -63,7 +65,7 @@ const UserWidget = ({ userId, picturePath }) => {
             <Typography
               variant="h4"
               color={dark}
-              frontWeight="500"
+              fontWeight="500"
               sx={{
                 '&:hover': {
                   color: palette.primary.light,
@@ -71,14 +73,14 @@ const UserWidget = ({ userId, picturePath }) => {
                 },
               }}
             >
-              {firstName}
-              {lastName}
+              {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends.length}friends</Typography>
+            <Typography color={medium}>{friends.length} friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
       </FlexBetween>
+
       <Divider />
 
       {/* SECOND ROW */}
@@ -92,35 +94,38 @@ const UserWidget = ({ userId, picturePath }) => {
           <Typography color={medium}>{occupation}</Typography>
         </Box>
       </Box>
+
       <Divider />
 
       {/* THIRD ROW */}
       <Box p="1rem 0">
-        <FlexBetween md="0.5rem">
+        <FlexBetween mb="0.5rem">
           <Typography color={medium}>Who's viewed your profile</Typography>
-          <Typography color={medium} fontWeight="500">
+          <Typography color={main} fontWeight="500">
             {viewedProfile}
           </Typography>
         </FlexBetween>
         <FlexBetween>
           <Typography color={medium}>Impressions of your post</Typography>
-          <Typography color={medium} fontWeight="500">
+          <Typography color={main} fontWeight="500">
             {impressions}
           </Typography>
         </FlexBetween>
       </Box>
-  <Divider />
-  
+
+      <Divider />
+
       {/* FOURTH ROW */}
       <Box p="1rem 0">
-        <Typography fontSize="1rem" color={medium} fontWeight="500" mb="1rem">
+        <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
           Social Profiles
         </Typography>
-        <FlexBetween gap="1rem" mb="0.5">
+
+        <FlexBetween gap="1rem" mb="0.5rem">
           <FlexBetween gap="1rem">
-            <img src="../../../public/logo192.png" alt="twitter" />
+            <Twitter sx={{ fill: main }}/>
             <Box>
-              <Typography color={main} fontWeight="500">
+            <Typography color={main} fontWeight="500">
                 Twitter
               </Typography>
               <Typography color={medium}>Social Network</Typography>
@@ -128,9 +133,10 @@ const UserWidget = ({ userId, picturePath }) => {
           </FlexBetween>
           <EditOutlined sx={{ color: main }} />
         </FlexBetween>
+
         <FlexBetween gap="1rem">
           <FlexBetween gap="1rem">
-            <img src="../../../public/logo512.png" alt="linkedin" />
+            <LinkedIn  sx={{ fill: main }}/>
             <Box>
               <Typography color={main} fontWeight="500">
                 Linkedin
@@ -144,4 +150,5 @@ const UserWidget = ({ userId, picturePath }) => {
     </WidgetWrapper>
   );
 };
+
 export default UserWidget;

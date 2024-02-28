@@ -35,7 +35,7 @@ const Navbar = () => {
   const user = useSelector(selectUser);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mode = useSelector(selectTheme);
-  console.log("Mode from Redux:", mode);
+
 
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
@@ -44,7 +44,9 @@ const Navbar = () => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  const fullName = `${user} `;
+  const {firstName, lastName} = user;
+
+  const fullName = `${firstName} ${lastName} `;
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
