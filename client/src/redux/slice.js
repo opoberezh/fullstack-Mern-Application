@@ -37,8 +37,8 @@ const initialState = {
     },
     setPost: (state, action) => {
       const updatedPosts = state.posts.map((post) => {
-        if (post._id === action.payload.post._id) return action.payload.post;
-        return post;
+        if (post._id === action.payload.post._id) return action.payload.post;//replacing that single post,
+        return post;//otherwise we just return the original post if we didn't find it
       });
       state.posts = updatedPosts;
     },

@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../redux/selectors";
 import UserWidget from "./widgets/UserWidget";
 import MyPostWidget from "./widgets/MyPostWidget";
+import PostsWidget from "./widgets/PostsWidget";
+import AdvertWidget from "./widgets/AdwerdWidget";
 
 
 const HomePage = () => {
@@ -24,13 +26,19 @@ const HomePage = () => {
       </Box>
       <Box flexBasis={isNonMobileScreens ? "42%" : "2rem"}>
         <MyPostWidget picturePath={picturePath}/>
-        
+        <PostsWidget userId={_id}/>
 
       </Box>
 <Box flexBasis= {isNonMobileScreens ? "42%" : undefined}
 mt={isNonMobileScreens ? undefined : "2rem"}
 ></Box>
-{isNonMobileScreens && <Box flexBasis="26%"></Box>}
+{isNonMobileScreens && (
+          <Box flexBasis="26%">
+            <AdvertWidget />
+            <Box m="2rem 0" />
+
+          </Box>
+        )}
     </Box>
    </Box>
   )

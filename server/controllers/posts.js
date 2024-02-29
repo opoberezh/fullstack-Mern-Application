@@ -12,8 +12,8 @@ export const createPost = async (req, res) => {
       lastName: user.lastName,
       location: user.location,
       description,
-      userPicturePath: user.picturePath,
       picturePath,
+      userPicturePath: user.picturePath,
       likes: {},
       comments: [],
     });
