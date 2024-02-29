@@ -25,8 +25,9 @@ const AdvertWidget = () => {
       />
       <FlexBetween>
         <Typography color={main}>MikaCosmetics</Typography>
+        </FlexBetween>
         <Typography color={medium}>mikacosmetics.com</Typography>
-      </FlexBetween>
+
       <Typography color={medium} m="0.5rem 0">
         Your pathway to stunning and immaculate beauty and made sure your skin
         is exfoliating skin and shining like light.

@@ -12,7 +12,6 @@ export const themeSlice = createSlice({
     setMode: (state) => {
 
       state.mode = state.mode === "light" ? "dark" : "light";
-      console.log("New mode:", state.mode);
 
     },
   }

@@ -11,8 +11,6 @@ import { selectIsToken, selectTheme } from './redux/selectors';
 
 function App() {
   const mode = useSelector(selectTheme);
-  console.log('Current mode:', mode);
-
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   const isAuth = Boolean(useSelector(selectIsToken));
   return (

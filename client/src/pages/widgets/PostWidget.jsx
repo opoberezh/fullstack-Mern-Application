@@ -24,7 +24,6 @@ const PostWidget = ({
   likes,
   comments,
 }) => {
-  console.log("Picture Path:", picturePath);
   const dispatch = useDispatch();
   const [isComments, setIsComments] = useState(false); //if is opened comment list or not;
   const loggedInUserId = useSelector(selectLoggedInUserId);
