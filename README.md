@@ -1,5 +1,7 @@
 # SocialNETia application
 
+### Preview 
+
 ## Sign Up and Sign In
 
 https://github.com/opoberezh/fullstack-SocialNETia-Application/assets/124092276/b883e70f-425e-439b-a191-232cb18914f9
