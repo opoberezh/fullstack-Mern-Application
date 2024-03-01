@@ -17,22 +17,22 @@ export const colorTokens = {
     1000: "#000000",
   },
   primary: {
-    50: "#B0C4DE",
-    100: "#ADD8E6",
-    200: "#B0E0E6",
-    300: "#1E90FF",
-    400: "#48D1CC",
-    500: "#00CED1",
-    600: "#5F9EA0",
-    700: "#4682B4",
-    800: "#4169E1",
-    900: "#191970",
+    50: "#FFE4C4",
+    100: "#FFDAB9",
+    200: "#FFA07A",
+    300: "#FF7F50",
+    400: "#FF6347",
+    500: "#FF8C00",
+    600: "#D2691E",
+    700: "#A0522D",
+    800: "#A52A2A",
+    900: "#800000",
   },
 };
 
 // mui theme settings
 export const themeSettings = (mode) => {
- 
+
   return {
     palette: {
       mode: mode,

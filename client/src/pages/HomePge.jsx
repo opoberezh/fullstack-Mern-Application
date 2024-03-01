@@ -5,7 +5,7 @@ import { selectUser } from "../redux/selectors";
 import UserWidget from "./widgets/UserWidget";
 import MyPostWidget from "./widgets/MyPostWidget";
 import PostsWidget from "./widgets/PostsWidget";
-import AdvertWidget from "./widgets/AdverdWidget";
+import AdvertWidget from "./widgets/AdvertWidget";
 import FriendListWidget from "./widgets/FriendListWidget";
 
 
