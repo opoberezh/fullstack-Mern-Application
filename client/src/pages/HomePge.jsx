@@ -28,11 +28,7 @@ const HomePage = () => {
       <Box flexBasis={isNonMobileScreens ? "42%" : "2rem"}>
         <MyPostWidget picturePath={picturePath}/>
         <PostsWidget userId={_id}/>
-
       </Box>
-<Box flexBasis= {isNonMobileScreens ? "42%" : undefined}
-mt={isNonMobileScreens ? undefined : "2rem"}
-></Box>
 {isNonMobileScreens && (
           <Box flexBasis="26%">
             <AdvertWidget />
